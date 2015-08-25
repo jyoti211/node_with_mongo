@@ -1,0 +1,29 @@
+
+<% layout('layout') -%>
+users list<br>
+
+
+
+logged in user details:
+<% if(userDetails){ %>
+gender <%= userDetails.gender %><br>
+name <%= userDetails.displayName %><br>
+email <%= userDetails.emails[0].value %><br>
+<img src=<%= userDetails.image.url %> height="100" width="100" ><br>
+ <% } %>
+<table>
+<tr><th>name</th><th>lastname</th><th>picture</th><th>edit</th><th></th><th>delete</th>
+ <% records.forEach(function(records) { %>
+     
+     <tr>
+     <td>  <%= records.name %> </td>
+      <td>  <%= records.lastname %> </td>
+       <td> <img src=<%= records.picture %> height="100" width="100" > </td>
+      <td>  <a href ="/edit/<%= records._id %>">edit</a></td>
+     <td>   <a href="/deleteuser/<%= records._id %>">delete</a></td>
+     
+     <td><button type="button" value="delete" onclick="deleteUser('<%= records._id %>');">delete</button></td>
+      </tr>
+    <% }); %>
+   </table>
+   </html>
